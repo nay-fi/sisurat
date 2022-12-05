@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class OpsController extends Controller
 {
     public function index() {
-        $datas = DB::select('select * from operasional');
+        $datas = DB::select('select * from operasional where is_deleted = 0');
 
         return view('ops.index')
             ->with('datas', $datas);
@@ -18,14 +18,20 @@ class OpsController extends Controller
     public function search(Request $request) {
         
         if($request->has('search')){
-            $datas = DB::table('operasional')->where('no_ops','like','%'.$request->search.'%')->paginate(5);
+            // $datas = DB::table('sium')->where('no_sium','like','%'.$request->search.'%')->paginate(5);
+            $search = $request->search;
+            $datas = DB::table('operasional')
+                    ->select('*')   
+                    ->where('no_ops', 'like', '%' . $search . '%')
+                    ->where('is_deleted', '=', 0)
+                    ->get();
+
         }else{
-            $datas = DB::table('operasional')->paginate(5);
+            $datas = DB::table('sium')->paginate(5);
         }
-        return view('ops.index')
+        return view('sium.index')
         ->with('datas', $datas);
     }
-
 
     public function create() {
         return view('ops.add');
@@ -75,9 +81,10 @@ class OpsController extends Controller
         ]);
 
         // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
-        DB::update('UPDATE operasional SET no_ops = :no_ops, tgl_surat = :tgl_surat, tentang = :tentang, isi = :isi, petugas = :petugas, no_sium = :no_sium WHERE no_ops = :no_ops',
+        DB::update('UPDATE operasional SET tgl_surat = :tgl_surat, tentang = :tentang, isi = :isi, petugas = :petugas, no_sium = :no_sium WHERE no_ops = :no_ops',
         [
-            'no_ops' => $no_ops,
+            
+            'no_ops' => $request->no_ops,
             'tgl_surat' => $request->tgl_surat,
             'tentang' => $request->tentang,
             'isi' => $request->isi,
@@ -96,6 +103,14 @@ class OpsController extends Controller
         // ]);
 
         return redirect()->route('ops.index')->with('success', 'Surat Masuk berhasil diubah');
+    }
+
+    public function softdelete($id)
+    {
+        // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
+        DB::update('UPDATE operasional SET is_deleted = 1
+        WHERE no_ops = :no_ops', ['no_ops' => $id]);
+        return redirect()->route('ops.index')->with('success', 'Data Surat masuk berhasil dihapus');
     }
 
     public function delete($id) {

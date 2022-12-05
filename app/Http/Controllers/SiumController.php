@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class SiumController extends Controller
 {
     public function index() {
-        $datas = DB::select('select * from sium');
+        $datas = DB::select('select * from sium where is_deleted = 0');
 
         return view('sium.index')
             ->with('datas', $datas);
@@ -18,7 +18,15 @@ class SiumController extends Controller
     public function search(Request $request) {
         
         if($request->has('search')){
-            $datas = DB::table('sium')->where('no_sium','like','%'.$request->search.'%')->paginate(5);
+            // $datas = DB::table('sium')->where('no_sium','like','%'.$request->search.'%')->paginate(5);
+            $search = $request->search;
+            $datas = DB::table('sium')
+                    ->select('*')   
+                    ->where('no_sium', 'like', '%' . $search . '%')
+                    ->where('is_deleted', '=', 0)
+                    ->get();
+            // $datas = DB::select(`select * from sium where no_sium like '%$search%' AND is_deleted = 0`)->paginate(5);
+
         }else{
             $datas = DB::table('sium')->paginate(5);
         }
@@ -114,7 +122,7 @@ class SiumController extends Controller
         return redirect()->route('sium.index')->with('success', 'Surat Masuk berhasil dihapus');
     }
 
-    public function softDelete($id)
+    public function softdelete($id)
     {
         // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
         DB::update('UPDATE sium SET is_deleted = 1

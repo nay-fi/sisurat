@@ -1,4 +1,4 @@
-@extends('login.layout')
+@extends('register.layout')
 
 @section('content')
 
@@ -14,8 +14,8 @@
     </div>
 @endif  
 
-<div class="card mt-4">
-	<div class="card-body">
+<div class="card mt-5 mb-4 col-6 m-auto">
+	<div class="card-body ">
 
         <h5 class="card-title fw-bolder mb-3">Registrasi</h5>
 
@@ -48,6 +48,8 @@
 			<div class="text-center">
 				<input type="submit" class="btn btn-primary" value="Sign Up" />
 			</div>
+            <br />
+            Anda sudah memiliki Akun? <a href="{{ route('login.index') }}">Login</a>
 		</form>
 	</div>
 </div>

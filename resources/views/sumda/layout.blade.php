@@ -25,7 +25,8 @@
               </a>
             </div>
         </nav>
-        <div class="container">
+        
+        <div class="container rounded-5">
             @yield('content')
         </div>
 

@@ -21,7 +21,7 @@
     <body class="antialiased">
         <nav class="navbar bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="{{'/register/index'}}">
+              <a class="navbar-brand" href="{{ route('register.index') }}">
               </a>
             </div>
         </nav>

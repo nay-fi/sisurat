@@ -1,16 +1,29 @@
 @extends('ops.layout')
 
-@section('content')
-
-<h4 class="mt-5">Data Surat Masuk Bag Ops Polrestabes</h4>
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Si Surat Polrestabes Semarang</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            </div>
+        </div>
+    </nav>
+    
+    @section('content')
+    
+    <h4 class="mt-5">Data Surat Masuk Bag Ops Polrestabes</h4>
+    <br /><br />
+    <form class="d-flex" action="{{route('ops.search')}}" method="get">
+            <input type="search" id="search" name="search" class="form-control me-2" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
 
 <div class="input-group mb-3 mt-2 flex-lg-wrap">
     <a href="{{ route('ops.create') }}" type="button" class="btn btn-success rounded-3">Tambah Surat Masuk</a>
-    <form action="{{route('ops.search')}}" method="get">  
-        <input type="search" id="search" name="search" class="form-control" placeholder="Search" aria-label="Search">
-    </form>
     </div>
 
 @if($message = Session::get('success'))
@@ -46,8 +59,12 @@
                     </a>
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $data->no_ops }}">
-                        <i class="material-icons" style="font-size:20px;color:white;">delete_outline</i>
+                        <i class="material-icons" style="font-size:20px;color:white;">delete_forever</i>
                     </button>
+
+                    <a href="{{ route('ops.softDelete',$data->no_ops) }}" type="button" class="btn btn-success">
+                        <i class="material-icons" style="font-size:20px;color:white;">delete_outline</i>
+                    </a>
 
                     <!-- Modal -->
                     <div class="modal fade" id="hapusModal{{ $data->no_ops }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">

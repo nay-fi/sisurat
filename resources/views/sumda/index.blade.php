@@ -1,16 +1,30 @@
 @extends('sumda.layout')
 
-@section('content')
-
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-<h4 class="mt-5">Data Surat Masuk Bag Sumda Polrestabes</h4>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Si Surat Polrestabes Semarang</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        
+        </div>
+      </div>
+    </nav>
+  
+  @section('content')
+  
+  <h4 class="mt-5">Data Surat Masuk Bag Sumda Polrestabes</h4>
+  <br /><br />
+  <form class="d-flex" action="{{route('sumda.search')}}" method="get">
+        <input type="search" id="search" name="search" class="form-control me-2" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+  </form>
 
-    <div class="input-group mb-3 mt-2">
+    <div class="input-group mb-2 mt-2">
         <a href="{{ route('sumda.create') }}" type="button" class="btn btn-success rounded-3">Tambah Surat Masuk</a>
-        <form action="{{route('sumda.search')}}" method="get">
-            <input type="search" id="search" name="search" class="form-control" placeholder="Search" aria-label="Search">
-        </form>
     </div>
 
 @if($message = Session::get('success'))
@@ -48,8 +62,9 @@
 
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $data->no_sumda }}">
-                        <i class="material-icons" style="font-size:20px;color:white;">delete_outline</i>
+                        <i class="material-icons" style="font-size:20px;color:white;">delete_forever</i>
                     </button>
+
 
                     <!-- Modal -->
                     <div class="modal fade" id="hapusModal{{ $data->no_sumda }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">

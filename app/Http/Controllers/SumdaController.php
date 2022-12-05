@@ -75,7 +75,7 @@ class SumdaController extends Controller
         ]);
 
         // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
-        DB::update('UPDATE sumda SET no_sumda = :no_sumda, tgl_surat = :tgl_surat, tentang = :tentang, isi = :isi, petugas = :petugas, no_sium = :no_sium WHERE no_sumda = :no_sumda',
+        DB::update('UPDATE sumda SET tgl_surat = :tgl_surat, tentang = :tentang, isi = :isi, petugas = :petugas, no_sium = :no_sium WHERE no_sumda = :no_sumda',
         [
             'no_sumda' => $no_sumda,
             'tgl_surat' => $request->tgl_surat,

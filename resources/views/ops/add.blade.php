@@ -14,10 +14,10 @@
     </div>
 @endif
 
-<div class="card mt-4">
+<div class="card mt-4 mb-3 col-8 m-auto">
 	<div class="card-body">
 
-        <h5 class="card-title fw-bolder mb-3">Tambah Surat Masuk</h5>
+        <h5 class="card-title text-center fw-bolder mb-3">Tambah Surat Masuk</h5>
 
 		<form method="post" action="{{ route('ops.store') }}">
 			@csrf
