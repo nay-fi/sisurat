@@ -34,6 +34,14 @@
                         <a href="{{ route('sumda.index') }}" class="btn btn-primary">BAG SUMDA</a>
                     </div>
                 </div>
+
+                <div class="col-4 mt-5 mb-5 ">
+                    <div class="p-3 border">
+                        <h5 class="card-title">Data Rinci</h5><br />
+                        <p class="card-text">Merupakan gabungan data rinci dari Bag Ops dan Sium karena merupakan main data pada Polrestabes</p><br /><br />
+                        <a href="{{ route('join.index') }}" class="btn btn-primary">BAG SUMDA</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>

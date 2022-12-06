@@ -25,12 +25,15 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
         
-        $user = DB::select('select count(*) AS u from user where nip = ? AND password = ?',[$request->nip, $request->password])[0];
-        $user = $user->u;
-        if($user === 1){
+        $user = DB::select('select * from user where nip = ?',[$request->nip])[0];
+        // $user = $user->u;
+        if($user){
+            if(password_verify($request->password, $user->password)){
+                
+                                return redirect('/home/index');
+            }
             $nip = $request->nip;
-            $password = $request->password;
-            return redirect('/home/index');
+            // $password = $request->password;
             
         }
 

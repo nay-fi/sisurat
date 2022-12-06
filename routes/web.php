@@ -5,6 +5,8 @@ use App\Http\Controllers\SiumController;
 use App\Http\Controllers\OpsController;
 use App\Http\Controllers\SumdaController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\JoinController;
+
 use App\Http\Controllers\RegisterController;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,6 +19,10 @@ Route::get('/register/index', function (){
 })->name('register.index');
 
 // Route::post('/home/index', function(){ return view('home.index'); });
+
+Route::get('/join/index', [JoinController::class, 'index'])->name('join.index');
+Route::get('/join/search', [JoinController::class, 'search'])->name('join.search');
+
 
 // Route untuk Bagian Sium
 Route::get('/sium', [SiumController::class, 'index'])->name('sium.index');

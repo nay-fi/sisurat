@@ -62,7 +62,7 @@
                         <i class="material-icons" style="font-size:20px;color:white;">delete_forever</i>
                     </button>
 
-                    <a href="{{ route('ops.softDelete',$data->no_ops) }}" type="button" class="btn btn-success">
+                    <a href="{{ route('ops.softDelete',$data->no_ops) }}" type="button" class="btn btn-secondary">
                         <i class="material-icons" style="font-size:20px;color:white;">delete_outline</i>
                     </a>
 

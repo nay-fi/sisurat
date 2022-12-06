@@ -34,7 +34,6 @@ class SiumController extends Controller
         ->with('datas', $datas);
     }
 
-
     // public function index()
     // {
     //     $datas = DB::select('SELECT * FROM `sium` WHERE no_sium = 0');
@@ -111,6 +110,7 @@ class SiumController extends Controller
 
         return redirect()->route('sium.index')->with('success', 'Surat Masuk berhasil diubah');
     }
+
 
     public function delete($id) {
         // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya

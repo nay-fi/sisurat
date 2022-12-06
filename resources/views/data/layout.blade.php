@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Bag Ops</title>
+        <title>All Data</title>
 
         <!-- Fonts -->
         <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,9 +20,9 @@
     </head>
     <body class="antialiased">
 
-        <nav class="navbar bg-light">
+        <nav class="navbar">
             <div class="container-fluid">
-                <a class="navbar-brand" href="{ route('index.php') }"></a>
+                <a class="navbar-brand" href="{ route('join.index') }"></a>
             </div>
         </nav>
 

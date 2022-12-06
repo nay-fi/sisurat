@@ -22,14 +22,17 @@ class OpsController extends Controller
             $search = $request->search;
             $datas = DB::table('operasional')
                     ->select('*')   
-                    ->where('no_ops', 'like', '%' . $search . '%')
+                    ->where(function($query) use ($search){
+                        $query->where('no_ops', 'like', '%' . $search . '%')->orWhere('petugas', 'like', '%' . $search . '%');
+                    })
                     ->where('is_deleted', '=', 0)
                     ->get();
 
         }else{
-            $datas = DB::table('sium')->paginate(5);
+        $datas = DB::select('select * from operasional where is_deleted = 0');
+        // $datas = DB::table('operasional')->paginate(5);
         }
-        return view('sium.index')
+        return view('ops.index')
         ->with('datas', $datas);
     }
 
